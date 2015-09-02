@@ -213,7 +213,7 @@ def distance_string(distance_in_meters):
     elif 1e-3 <= distance_in_meters <= 1e-2:
         (conversion, unit_name) = (1e-3, 'mm')
     elif 1e-6 <= distance_in_meters <= 1e-3:
-        (conversion, unit_name) = (1e-6, '\mu m') #μm
+        (conversion, unit_name) = (1e-6, '\mu m') #um
     elif 1e-9 <= distance_in_meters <= 1e-6:
         (conversion, unit_name) = (1e-9, 'nm')
     else:
