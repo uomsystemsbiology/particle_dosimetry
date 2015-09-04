@@ -1,8 +1,6 @@
 function driver_plot_size_density_differences
     %load('size_density_24hr.mat');
     %max_sizes = zeros(1, length(densities));
-     
-    close all;
     label_font_size = 12;
     
     plotline = @(ax, xpos) line([xpos,xpos], [ax.YLim(1), 0.85*ax.YLim(2)], 'Color', 'black', 'LineStyle', ':');

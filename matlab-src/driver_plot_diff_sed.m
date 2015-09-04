@@ -1,5 +1,4 @@
 function [] = driver_plot_diff_sed()
-    close all;
     load('diff_sed_pde.mat');
     fig_1d_plots = length(conditions) - 1;
     
