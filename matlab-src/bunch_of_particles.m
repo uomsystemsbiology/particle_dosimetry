@@ -47,12 +47,6 @@ function bunch_of_particles
                          ExperimentalCondition.StandardCondition(normal_time, .0053, c.upright_cells_linear), ...
                          ExperimentalCondition.StandardCondition(normal_time, .0053, c.upright_cells_logistic)];
                             
-                     
-                     
-    xia_conditions = [ExperimentalCondition.StandardCondition(normal_time, .005, 1), ...
-        ExperimentalCondition.StandardCondition(normal_time, .005, 2), ...
-        ExperimentalCondition.StandardCondition(normal_time, .0012, 3)];
-
     %lison particles for experiment 2 
     lison_particles = [Particle.SilicaParticle(29.3e-9)];
     

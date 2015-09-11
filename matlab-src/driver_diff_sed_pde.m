@@ -6,16 +6,9 @@ function driver_diff_sed_pde
     pma_conc = 1;
     fake_z_pot = -35.2e-3;
     boundary_condition = cell_boundary_conditions.constant_concentration_zero;
-    pmash_min = Particle('PMASH particles MIN', (190e-9)/2, 1060, -35.2e-3, pma_conc);
-    core_shell_min = Particle('MS/CS particles MIN', (240e-9)/2, 1650, -38.6e-3, cs_conc);
-    pmash_max= Particle('PMASH particles MAX', (210e-9)/2, 1060, -35.2e-3, pma_conc);
-    core_shell_max = Particle('MS/CS particles MAX', (260e-9)/2, 1650, -38.6e-3, cs_conc);
     
     pmash_avg = Particle('PMA capsules', (200e-9)/2, 1060, -35.2e-3, pma_conc);
-    core_shell_avg = Particle('SC/MS particles', (250e-9)/2, 1650, -38.6e-3, cs_conc);    
-
-    normal_particles = [pmash_min, pmash_avg, pmash_max, ...
-                        core_shell_min, core_shell_avg, core_shell_max];
+    core_shell_avg = Particle('SC/MS particles', (250e-9)/2, 1650, -38.6e-3, cs_conc);
     normal_particles = [pmash_avg, core_shell_avg];
     normal_time = 24*60*60;
   
@@ -30,16 +23,45 @@ function driver_diff_sed_pde
                          ExperimentalCondition.StandardCondition(normal_time, .002, .022, inverted_volume, c.inverted_cells), ...
                          ExperimentalCondition.StandardCondition(normal_time, vertical_height, .007, vertical_volume, c.vertical_cells), ...
                          ExperimentalCondition.StandardCondition(normal_time, .0053, .022, normal_volume, c.inverted_cells_special2D)];  
-%     normal_conditions = ...
-%     [ExperimentalCondition.StandardCondition(normal_time, .0053, .022, normal_volume, c.upright_cells), ...
-%      ExperimentalCondition.StandardCondition(normal_time, .016, .007, vertical_volume, c.vertical_cells)];
-    %normal_conditions = [ExperimentalCondition.StandardCondition(normal_time, .0053, .022, normal_volume, c.no_cells), ... 
-     %                    ExperimentalCondition.StandardCondition(normal_time, .0053, .022, normal_volume, c.inverted_cells_special2D)];    
+
+    %different concentrations of each particle were used.....
+    non_peg_xia_particles = [Particle('Non-PEG 15nm Gold', (22.5e-9)/2, 6290, fake_z_pot, 120), ...
+                              Particle('Non-PEG 54nm Gold', (77.7e-9)/2, 7010, fake_z_pot, 20), ...
+                              Particle('Non-PEG 100nm Gold', (127.3e-9)/2, 9820, fake_z_pot, 2.8)];
+
+    peg_xia_particles = [Particle('PEG 15nm Gold', (20.5e-9)/2, 7970, fake_z_pot, 120), ...
+                      Particle('PEG 54nm Gold', (71.6e-9)/2, 8680, fake_z_pot, 20), ...
+                      Particle('PEG 100nm Gold', (116.3e-9)/2, 12570, fake_z_pot, 2.8)];
+
+    xia_conditions_from_paper = [...
+        ExperimentalCondition.StandardCondition(normal_time, .005, .035, .005, c.upright_cells),...
+        ExperimentalCondition.StandardCondition(normal_time, .0012, .035, .00115, c.inverted_cells)];
+                      
+    xia_conditions_guesswork = [...
+        ExperimentalCondition.StandardCondition(normal_time, .0012, .035, .005, c.upright_cells),...
+        ExperimentalCondition.StandardCondition(normal_time, .0012, .035, .005, c.inverted_cells)];
+
+    argwal_particles = [...
+        Particle('100nm PS', 100e-9/2, 1050, fake_z_pot, 1), ...
+        Particle('200nm PS', 200e-9/2, 1050, fake_z_pot, 1)];
+    argwal_conditions = [... %these are guessed
+        ExperimentalCondition.StandardCondition(normal_time, .001, .016, 1, c.upright_cells), ...
+        ExperimentalCondition.StandardCondition(normal_time, .001, .016, 1, c.inverted_cells)];
+        
     
-                     
-                     
-    particles = normal_particles;
-    conditions = normal_conditions;
+    lee_particles = [...% do
+        ];
+    lee_conditions = [... % floated on top of medium, so dimensions of the two are the same
+        ];
+    
+    giger_particles = [... 
+        Particle('190nm Calcium Phosphate', 190e-9/2, 3140, fake_z_pot, 1)];
+    giger_conditions = [... #guesses about dimensions based on six well plate, but dimensions should be the same
+        ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.upright_cells), ...
+        ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.inverted_cells)];
+
+    particles = giger_particles;
+    conditions = giger_conditions;
     results1DMap = containers.Map();
     results2DMap = containers.Map();
 
@@ -93,8 +115,8 @@ function driver_diff_sed_pde
                 end
             end
         end
-    end 
-    save('diff_sed_pde.mat');
+    end
+    save('diff_sed_pde_giger_guesswork.mat');
     load 'gong.mat';
     sound(y/30);
 end

@@ -1,5 +1,5 @@
 function [] = driver_plot_diff_sed()
-    load('diff_sed_pde.mat');
+    load('diff_sed_pde_giger_guesswork.mat');
     fig_1d_plots = length(conditions) - 1;
     
     time_slices_2d = [0, 1];
@@ -69,10 +69,12 @@ function [] = driver_plot_diff_sed()
     
     base_1D_exp = 'wrong'; 
     base_2D_exp = 'wrong';
-    %for storting
+    %for sorting
     for exp_name = keys(results1DMap)
         exp_name = char(exp_name)
-        if str_contains(exp_name, 'PMA') && str_contains(exp_name, 'upright')
+        if (str_contains(exp_name, 'PMA') && str_contains(exp_name, 'upright')) || ...
+            (str_contains(exp_name, 'Non-PEG') && str_contains(exp_name, '15nm')) || ...
+            (str_contains(exp_name, '190nm Calcium Phosphate'))
             r = results1DMap(exp_name);
             base_1D_exp = r{1};
             base_2D_exp = base_1D_exp;
@@ -84,22 +86,23 @@ function [] = driver_plot_diff_sed()
     end    
     
     
-    for scale_type = [c.no_spatial_scale, c.len_scale c.volume_scale, c.volume_and_surface_area_scale]
+    %for scale_type = [c.no_spatial_scale, c.len_scale c.volume_scale, c.volume_and_surface_area_scale]
+    for scale_type = [c.volume_scale, c.volume_and_surface_area_scale]
         disp(sprintf('####### CONDITION:   %s #######', c.scale_name(scale_type)))
         for exp_name = sorted_exp_names
             if isKey(results1DMap, char(exp_name))
                 r = results1DMap(char(exp_name));
                 exp = r{1};
                 sim_result = r{2};
-                disp(sprintf('%s 1D amount removed:                             %f', exp.name, ...
-                    SimulationResult.scaled_amount(scale_type, sim_result.amount_removed, exp, base_1D_exp)))
+                scaled_amount = SimulationResult.scaled_amount(scale_type, sim_result.amount_removed, exp, base_1D_exp);
+                disp(sprintf('%s 1D amount removed:                             %f', exp.name, scaled_amount));
             end
             if isKey(results2DMap, char(exp_name))
                 r = results2DMap(char(exp_name));
                 exp = r{1};
                 sim_result = r{2};
-                disp(sprintf('%s 2D amount removed:                             %f', exp.name, ...
-                    SimulationResult.scaled_amount(scale_type, sim_result.amount_removed, exp, base_2D_exp)))
+                scaled_amount = SimulationResult.scaled_amount(scale_type, sim_result.amount_removed, exp, base_2D_exp);
+                disp(sprintf('%s 2D amount removed:                             %f', exp.name, scaled_amount));
             end
         end
         disp(' ====================================');

@@ -7,8 +7,8 @@ function result = diffusion_sedimentation_2d_pde(experiment_and_particle, cell_b
     particle_removal_speed = 9999999;
     z = particle_removal_speed / sed_velocity;
     
-    %hmax = .0001;
-    hmax = .00005;
+    hmax =  .0001;
+    %hmax = .00005;
     timepts = 100;
     
     model = createpde;
