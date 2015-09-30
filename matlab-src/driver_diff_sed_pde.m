@@ -92,26 +92,28 @@ function driver_diff_sed_pde
 %                         subplot(m,1,i);
 %                     end            
                 disp('=================================');
+                
                 if exp.condition.cell_position ~= c.inverted_cells_special2D      
                     result1D = diffusion_sedimentation_pde(exp);
                     results1DMap(exp.name) = {exp, result1D};
-                    amnt1D_str = sprintf('%s 1D relative amount removed: %f', exp.name, result1D.amount_removed);
-                    disp(amnt1D_str);
-                    
+                    done_str = sprintf('%s 1D done', exp.name);
+                    disp(done_str);
+                    %amnt1D_str = sprintf('%s 1D relative amount removed: %f', exp.name, result1D.amount_removed);
+                    %disp(amnt1D_str);                    
                 end
 
                 if 1 %exp.condition.cell_position == c.vertical_cells
                  result2D = diffusion_sedimentation_2d_pde(exp, boundary_condition);
-                 results2DMap(exp.name) = {exp, result2D};
-                 amnt2D_str = sprintf('%s 2D relative amount removed: %f', exp.name, result2D.amount_removed);
-                 disp(amnt2D_str);
+                 results2DMap(exp.name) = {exp, result2D};                 
+                 %amnt2D_str = sprintf('%s 2D relative amount removed: %f', exp.name, result2D.amount_removed);
+                 %disp(amnt2D_str);
+                 done_str = sprintf('%s 1D done', exp.name);
+                 disp(done_str);
                 end
             end
         end
     end
-    save('diff_sed_pde_giger_guesswork.mat');
-    load 'gong.mat';
-    sound(y/30);
+    save('diff_sed_pde.mat');
 end
 
 
