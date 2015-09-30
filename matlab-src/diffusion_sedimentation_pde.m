@@ -76,8 +76,12 @@ function result = diffusion_sedimentation_pde(exp)
     end
     
     m = 0;
-    options = odeset('AbsTol', 1e-6);
-    sol = pdepe(m,diff_sed_pde,@diff_sed_icfun,diff_sed_bcfun,x,t,options);
+%    options = odeset('AbsTol', 1e-6);
+%    sol = pdepe(m,diff_sed_pde,@diff_sed_icfun,diff_sed_bcfun,x,t,options);
+    
+%    options = odeset('AbsTol', 1e-6);
+    sol = pdepe(m,diff_sed_pde,@diff_sed_icfun,diff_sed_bcfun,x,t);
+    
     final_time_pt_sol = [x; sol(end,:)]';   
     
     amount_left = trapz(final_time_pt_sol(:,1), final_time_pt_sol(:,2));

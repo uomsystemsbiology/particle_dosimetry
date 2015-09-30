@@ -24,8 +24,6 @@ classdef ExperimentAndParticle
             obj.tmax = obj.calculate_tmax();
             obj.surface_potential = obj.particle.zeta_potential;
             obj.kappa = obj.calculate_screening_parameter();
-            %obj.scale_type = scale_type;
-            %obj.scale_factor = obj.calculate_scale_factor();
             obj.name = obj.get_name();
         end
         
