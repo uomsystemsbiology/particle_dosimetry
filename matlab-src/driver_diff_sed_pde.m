@@ -60,8 +60,8 @@ function driver_diff_sed_pde
         ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.upright_cells), ...
         ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.inverted_cells)];
 
-    particles = giger_particles;
-    conditions = giger_conditions;
+    particles = normal_particles;
+    conditions = normal_conditions;
     results1DMap = containers.Map();
     results2DMap = containers.Map();
 
@@ -71,13 +71,6 @@ function driver_diff_sed_pde
     
     %disp(sprintf('####### CONDITION:   %s #######', c.scale_name(scale_type)))
     for p=particles
-%             if fig_per_plot
-%                 figure
-%             else
-%                 figure('position', [0,0,700, 900]);
-%                 fig_title = sprintf('Concentration profiles for %s - %s', p.name, c.scale_name(scale_type));
-%                 suptitle(fig_title);
-%             end
         i= 0;        
         for co=conditions                
             i = i+1;
