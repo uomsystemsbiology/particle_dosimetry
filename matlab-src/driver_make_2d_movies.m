@@ -1,6 +1,15 @@
 function [] = driver_make_2d_movies()
     close all;
-    load('diff_sed_pde_constant_concentration.mat');
+    %PRAGMAS FOR COMPILER
+    %DONT CHANGE OR REMOVE
+    %#function Particle
+    %#function ExperimentalCondition
+    %#function ExperimentAndParticle
+    %#function cell_boundary_conditions
+    %#function c
+    %#function SimulationResult
+
+    load('diff_sed_pde.mat');
     time_slices_2d = [0, 1];
     exp_names = keys(results2DMap);
     exp_names = fliplr(exp_names);

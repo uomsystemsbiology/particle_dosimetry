@@ -1,4 +1,13 @@
 function plot_size_density_differences(data_file)
+    %PRAGMAS FOR COMPILER
+    %DONT CHANGE OR REMOVE
+    %#function Particle
+    %#function ExperimentalCondition
+    %#function ExperimentAndParticle
+    %#function cell_boundary_conditions
+    %#function c
+    %#function SimulationResult
+
     load(data_file);
     colors = [ [175 175 247]; [100 100 247]; [25 25 247]] ./ 255;
     cutoff_ratios = [0.8 0.9 0.95];
