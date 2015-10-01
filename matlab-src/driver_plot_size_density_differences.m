@@ -1,13 +1,12 @@
 function driver_plot_size_density_differences
-    %load('size_density_24hr.mat');
-    %max_sizes = zeros(1, length(densities));
+
     label_font_size = 12;
     marker_color = [247 71  26] ./ 255;
     
     plotline = @(ax, xpos) line([xpos,xpos], [ax.YLim(1), 0.75*ax.YLim(2)], 'Color', 'black', 'LineStyle', ':');
     label_top_of_line = @(ax, label_name, position) text(position, 0.75*ax.YLim(2), label_name, 'rotation', 30, 'FontSize', label_font_size);
     figure;
-    plot_size_density_differences('size_density_24hr_2d_5in_cube.mat')
+    plot_size_density_differences('size_density_24hr.mat')
     ylim([0 100e-9]);
     xlim([1000 20000]);
     ax = gca;    
@@ -36,7 +35,7 @@ function driver_plot_size_density_differences
     hold off;
     
     figure;    
-    plot_size_density_differences('size_density_24hr_2d_5in_cube.mat')  
+    plot_size_density_differences('size_density_24hr.mat')  
     ylim([0 300e-9]);
     xlim([1000 2000]);
     ax = gca;

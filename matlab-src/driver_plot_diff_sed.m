@@ -1,5 +1,5 @@
 function [] = driver_plot_diff_sed()
-    load('diff_sed_pde_giger_guesswork.mat');
+    load('diff_sed_pde.mat');
     fig_1d_plots = length(conditions) - 1;
     
     time_slices_2d = [0, 1];
