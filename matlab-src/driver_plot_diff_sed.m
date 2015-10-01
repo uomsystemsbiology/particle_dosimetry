@@ -1,4 +1,13 @@
 function [] = driver_plot_diff_sed()
+    %PRAGMAS FOR COMPILER
+    %DONT CHANGE OR REMOVE
+    %#function Particle
+    %#function ExperimentalCondition
+    %#function ExperimentAndParticle
+    %#function cell_boundary_conditions
+    %#function c
+    %#function SimulationResult
+    
     load('diff_sed_pde.mat');
     fig_1d_plots = length(conditions) - 1;
     
