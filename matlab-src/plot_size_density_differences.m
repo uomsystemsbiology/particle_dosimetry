@@ -1,6 +1,7 @@
 function plot_size_density_differences(data_file)
     %PRAGMAS FOR COMPILER
     %DONT CHANGE OR REMOVE
+    %#function createpde
     %#function Particle
     %#function ExperimentalCondition
     %#function ExperimentAndParticle

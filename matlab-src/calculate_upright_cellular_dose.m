@@ -26,6 +26,7 @@ function calculate_upright_cellular_doses(size_range, density_range, workfile)
             upright_results(i,j) = upright_r.amount_removed;
         end
     end
+    disp(upright_results);
     save(workfile)
     
 end
