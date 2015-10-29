@@ -11,9 +11,11 @@ function driver_plot_size_density_differences
     xlim([1000 20000]);
     ax = gca;    
     ax.XTick = [1000, linspace(2500, 20000, 8)];
-    ax.XTickLabel = [1000, linspace(2500, 20000, 8)];
-    ax.YTick = [1e-9, 10e-9, 25e-9, 50e-9, 75e-9, 100e-9];
-    ax.YTickLabel = ax.YTick * 1e9;      
+    ax.XTickLabel = ax.XTick ./ 1000; % convert to g/cm3
+    xlabel('Density (g/cm^{3})');
+    ax.YTick = [0.5e-9, 10e-9, 25e-9, 50e-9, 75e-9, 100e-9];
+    ax.YTickLabel = ax.YTick * 1e9 * 2; % convert to diameter
+    ylabel('Diameter (nm)');
     
     plotline(ax, 2200);
     label_top_of_line(ax, 'Silica', 2200);
@@ -28,10 +30,10 @@ function driver_plot_size_density_differences
 
     hold on;
     plot([6290, 7010, 9820, 3140], [22.5e-9/2, 77.7e-9/2, 127.3e-9/2, 190e-9/2],'o','markersize', 7,'MarkerEdgeColor','flat','MarkerFaceColor',marker_color);
-    text(6490, 24e-9/2, '15nm Gold (1)', 'FontSize', label_font_size);
-    text(7310, 79e-9/2, '54nm Gold (1)', 'FontSize', label_font_size);
-    text(10020, 129e-9/2, '100nm Gold (1)', 'FontSize', label_font_size);
-    text(3340, 192e-9/2, '190 Calcium Phosphate (2)', 'FontSize', label_font_size);
+    text(6490, 24e-9/2, 'Cho-1', 'FontSize', label_font_size);
+    text(7310, 79e-9/2, 'Cho-2', 'FontSize', label_font_size);
+    text(10020, 129e-9/2, 'Cho-3', 'FontSize', label_font_size);
+    text(3340, 192e-9/2, 'Giger-1', 'FontSize', label_font_size);
     hold off;
     
     figure;    
@@ -40,9 +42,11 @@ function driver_plot_size_density_differences
     xlim([1000 2000]);
     ax = gca;
     ax.XTick = linspace(1000, 2000, 11);
-    ax.XTickLabel = linspace(1000, 2000, 11);
+    ax.XTickLabel = ax.XTick ./ 1000; % convert to g/cm3
+    xlabel('Density (g/cm^{3})');
     ax.YTick = linspace(0, 300e-9, 6);
-    ax.YTickLabel = ax.YTick * 1e9;
+    ax.YTickLabel = ax.YTick * 1e9* 2; % convert to diamter
+    ylabel('Diameter (nm)');
       
     plotline(ax, 1050);
     label_top_of_line(ax, 'PS', 1050);
