@@ -1,15 +1,20 @@
 function driver_plot_size_density_differences
-
+    
     label_font_size = 12;
-    marker_color = [247 71  26] ./ 255;
+    marker_color = [0 0 0] ./ 255;
+    %marker_color = [102, 101, 109] ./ 255;
+    %marker_color = [57, 10, 139] ./ 255;
     
     plotline = @(ax, xpos) line([xpos,xpos], [ax.YLim(1), 0.75*ax.YLim(2)], 'Color', 'black', 'LineStyle', ':');
-    label_top_of_line = @(ax, label_name, position) text(position, 0.75*ax.YLim(2), label_name, 'rotation', 30, 'FontSize', label_font_size);
+    label_top_of_line = @(ax, label_name, position) text(position, 0.75*ax.YLim(2), label_name, 'rotation', 30, 'FontSize', label_font_size, 'FontWeight', 'bold');
+    point_label = @(x, y, label_text) text(x,y, label_text, 'FontSize', label_font_size, 'FontWeight', 'bold');
+    
     figure;
     plot_size_density_differences('size_density_24hr.mat')
     ylim([0 100e-9]);
     xlim([1000 20000]);
     ax = gca;    
+    
     ax.XTick = [1000, linspace(2500, 20000, 8)];
     ax.XTickLabel = ax.XTick ./ 1000; % convert to g/cm3
     xlabel('Density (g/cm^{3})');
@@ -30,10 +35,10 @@ function driver_plot_size_density_differences
 
     hold on;
     plot([6290, 7010, 9820, 3140], [22.5e-9/2, 77.7e-9/2, 127.3e-9/2, 190e-9/2],'o','markersize', 7,'MarkerEdgeColor','flat','MarkerFaceColor',marker_color);
-    text(6490, 24e-9/2, 'Cho-1', 'FontSize', label_font_size);
-    text(7310, 79e-9/2, 'Cho-2', 'FontSize', label_font_size);
-    text(10020, 129e-9/2, 'Cho-3', 'FontSize', label_font_size);
-    text(3340, 192e-9/2, 'Giger-1', 'FontSize', label_font_size);
+    point_label(6490, 24e-9/2, ' Cho-1');
+    point_label(7310, 79e-9/2, ' Cho-2');
+    point_label(10020, 129e-9/2, ' Cho-3');
+    point_label(3340, 192e-9/2, ' Giger-1');
     hold off;
     
     figure;    
@@ -63,8 +68,8 @@ function driver_plot_size_density_differences
     hold on;
 
     plot([1060,1650], [200e-9/2, 250e-9/2],'o','markersize', 7,'MarkerEdgeColor','flat','MarkerFaceColor',marker_color);
-    text(1080, 200e-9/2, 'Capsule', 'FontSize', label_font_size);
-    text(1670, 250e-9/2, 'Core-shell', 'FontSize', label_font_size);
+    point_label(1080, 200e-9/2, 'Capsule');
+    point_label(1670, 250e-9/2, 'Core-shell');
     
     %plot(plot_densities, plot_sizes, 'b');
     %hold on;    

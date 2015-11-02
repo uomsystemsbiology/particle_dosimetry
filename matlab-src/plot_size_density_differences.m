@@ -10,14 +10,27 @@ function plot_size_density_differences(data_file)
     %#function SimulationResult
 
     load(data_file);
-    colors = [ [175 175 247]; [100 100 247]; [25 25 247]] ./ 255;
-    cutoff_ratios = [0.8 0.9 0.95];
+    %colors = [ [175 175 247]; [100 100 247]; [25 25 247]] ./ 255;
+    cutoff_ratios = [0 0.8 0.9 0.95];
     vu_ratio = vertical_results ./ upright_results;
     %cutoff_ratios = [1.2 1.1 1.05];
     %vu_ratio = upright_results ./ vertical_results;
 
     %colors = [[1 0 0]; [0 1 0]; [0 0 1]];
-    colors = [ [175 175 247]; [100 100 247]; [25 25 247]] ./ 255;
+    %green = [0, 147, 59];
+    %yellow = [204, 180, 0];
+    %red = [204, 39, 0];
+    first = [242, 105, 108];
+    second =  [254 234 133];
+    fourth = [100 100 247];
+    %third = [101 180 125];
+    third = [101 192 125];
+    %third = (second + fourth) ./ 2;
+    
+    
+    colors = [first; second; third; fourth; ] ./ 255;
+    set(gca,'Color', first ./ 255 );
+    %colors = [ base_color; [175 175 247]; [100 100 247]; [25 25 247]] ./ 255;
     %colors = [[180 51 0]; [25, 163, 25]; [50 50 50]] ./ 255;
     %colors = [[120 200 247]; [100 180 247]; [82 164 247]] ./ 255;
     %colors = [[.25 .25 1]; [.25 .25 200/255]; [.25 .25 100/255]];   
@@ -48,8 +61,9 @@ function plot_size_density_differences(data_file)
     hold off;
     xlabel('Density (kg/m^{3})');
     ylabel('Radius (nm)');
-    l = legend('<20%', '<10%', '<5%');
+    l = legend('>20%', '<20%', '<10%', '<5%');
     l.Position(1) = 0.95 * l.Position(1);
+    l.Color = 'white';
     set(gca, 'TickDir', 'out')
     
 end
