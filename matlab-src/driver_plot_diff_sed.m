@@ -117,5 +117,6 @@ function [] = driver_plot_diff_sed()
         end
         disp(' ====================================');
     end
+    disp('Finished!');
 end
 

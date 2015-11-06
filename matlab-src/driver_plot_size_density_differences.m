@@ -75,7 +75,7 @@ function driver_plot_size_density_differences
     %hold on;    
     %plot([1060,1650], [200e-9/2, 250e-9/2], 'ro');
     hold off;    
-    
+    disp('Finished!');    
 end
 
     
