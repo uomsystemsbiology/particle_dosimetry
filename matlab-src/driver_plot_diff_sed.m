@@ -31,7 +31,7 @@ function [] = driver_plot_diff_sed()
             exp = r{1};
             sim_result = r{2};
             if i == 0
-                figure('position', [0,0,1000,900]);
+                figure('position', [0,0,1024,690]);
                 fig_title = sprintf('1D Concentration Profiles For %s', exp.particle.name);
                 s = suptitle(fig_title);
                 s.Position = [0.5000 -0.0200 0];
@@ -56,7 +56,7 @@ function [] = driver_plot_diff_sed()
             exp = r{1};
             sim_result = r{2};
             if i == 0
-                figure('position', [0,0,1000,900]);
+                figure('position', [0,0,1024,690]);
                 fig_title = sprintf('2D Concentration Profiles For %s', exp.particle.name);
                 s = suptitle(fig_title);
                 s.Position = [0.5000 -0.0200 0];
