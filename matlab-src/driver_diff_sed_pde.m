@@ -60,6 +60,9 @@ function driver_diff_sed_pde
         ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.upright_cells), ...
         ExperimentalCondition.StandardCondition(4*60*60, .005, .035, .005, c.inverted_cells)];
 
+    iron_particles = [Particle('Iron', 12e-9/2, 7874, fake_z_pot, 1)];
+    iron_conditions = [ExperimentalCondition.StandardCondition(normal_time, .0053, .016, 1, c.upright_cells)];
+    
     particles = normal_particles;
     conditions = normal_conditions;
     results1DMap = containers.Map();
@@ -107,7 +110,7 @@ function driver_diff_sed_pde
                  results2DMap(exp.name) = {exp, result2D};                 
                  %amnt2D_str = sprintf('%s 2D relative amount removed: %f', exp.name, result2D.amount_removed);
                  %disp(amnt2D_str);
-                 done_str = sprintf('%s 1D done', exp.name);
+                 done_str = sprintf('%s 2D done', exp.name);
                  disp(done_str);
                 end
             end
